@@ -4,10 +4,9 @@ LABEL authors="rmchaves"
 
 RUN apk add --no-cache bash
 
-COPY . /var/www
-
 WORKDIR /var/www
 
-RUN pip install -r ./requirements.txt
+COPY requirements.txt ./
+RUN pip install -r requirements.txt
 
-CMD ["python", "api/main.py"]
+CMD ["flask", "run", "--debug", "--host", "0.0.0.0"]
